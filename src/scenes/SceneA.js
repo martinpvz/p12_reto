@@ -12,6 +12,22 @@ class SceneA extends Phaser.Scene{
     create() {
         //CAMARA INICIAL EFECTO FADE IN
         this.cameras.main.fadeIn(2000);
+        this.cameras.main.setBounds(0, 0, 1580, 780);
+        
+        this.cameras.main.on(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, () => {
+        this.cameras.main.pan(100, 702, 2000);
+        this.cameras.main.setZoom(5);
+        });
+        this.cameras.main.on(Phaser.Cameras.Scene2D.Events.PAN_COMPLETE, () => {
+            setTimeout( () => {
+                // coordenada x, coordeada y, duración, interpolación
+                this.cameras.main.pan(this.puerta.x, this.puerta.y, 2000);
+            }, 2000);
+            setTimeout( () => {
+                this.cameras.main.setZoom(1);
+            }, 5000);
+        });
+        //  790 y 390
 
         // CONTADOR VIDAD
         this.contadorVidas=3;
@@ -32,7 +48,7 @@ class SceneA extends Phaser.Scene{
         this.instrucciones = this.add.image(750,25, 'instrucciones').setDepth(4).setScale(0.28);
         setTimeout(() => {
             this.instrucciones.setAlpha(0);
-        }, 10000);
+        }, 19000);
 
         //BARRA DIAGONAL
         this.barraDiagonal = this.add.image(1250, 400, 'barraDiagonal').setScale(0.6);
