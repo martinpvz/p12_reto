@@ -20,6 +20,10 @@ class Menu extends Phaser.Scene{
         this.logo = this.add.image(450,320, 'logo2').setScale(1).setDepth(4);
         this.noobLovers = this.add.image(420,100, 'noobLovers').setScale(.5).setDepth(4);
         this.play = this.add.image(430,600, 'play').setScale(.25).setInteractive().setDepth(4);
+        //CAMARA INICIAL EFECTO FADE IN
+        this.cameras.main.setBounds(0,0,1580,780);
+        this.cameras.main.fadeIn(1500);
+        //const camara1 = this.cameras.main;
         // MÚSICA DE FONDO
         this.mainmenu = this.sound.add('InicioM', {loop:false,volume: 0.8});
         this.mainmenu.play();

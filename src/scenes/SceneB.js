@@ -13,6 +13,8 @@ class SceneB extends Phaser.Scene{
     
 
     create() {
+        //CAMARA INICIAL EFECTO FADE IN
+        this.cameras.main.fadeIn(2000);
         //MÚSICA
         this.gong = this.sound.add('gong',{loop:false});
         this.musicaFondo = this.sound.add('musicaFondo',{loop:false});
@@ -144,6 +146,7 @@ class SceneB extends Phaser.Scene{
         
         //COLISIÓN CON PICOS
         this.physics.add.collider(this.javier, this.picos, () => {
+            this.cameras.main.shake(500,0.008);
             this.finalScore -= 1;
             this.registry.events.emit('loseHeart',-1);
             this.javier.body.x=50;

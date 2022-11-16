@@ -10,6 +10,9 @@ class GameOver extends Phaser.Scene{
     }
 
     create(){
+        //CAMARA INICIAL EFECTO FADE IN
+        this.cameras.main.fadeIn(2000);
+        //IMÁGENES
         this.fondo = this.add.image(775, 395, 'gameOverBack').setScale(.365);
         this.menu = this.add.image(820, 550, 'botonMenu2').setScale(.25).setInteractive();
         //SONIDOS

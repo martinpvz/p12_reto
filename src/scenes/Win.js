@@ -10,6 +10,9 @@ class Win extends Phaser.Scene{
     }
     
     create(){
+        //CAMARA INICIAL EFECTO FLASH
+        this.cameras.main.flash(2000);
+        //IMÁGENES
         this.fondo = this.add.image(775, 395, 'winBack').setScale(.37,.33);
         this.menu = this.add.image(800, 650, 'botonMenu').setScale(.25).setInteractive();
         //SONIDOS

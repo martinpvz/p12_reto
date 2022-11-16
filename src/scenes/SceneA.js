@@ -10,29 +10,8 @@ class SceneA extends Phaser.Scene{
     }
     
     create() {
-        //CAMARA
-        this.cameras.main.setAlpha(0);
-        console.log(this.cameras.main.x);
-        const camera1 =
-        //posición x, posición y, ancho, alto
-        this.cameras.add(0, 0)
-        // .setBackgroundColor(0x00ff00)
-        // tiempo en milisegundos
-        .fadeIn(4000);
-
-        camera1.on(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, () => {
-            console.log("Se ha completado el FADE_IN");
-            camera1.zoomTo(5, 2000, 'Sine.easeInOut');
-            camera1.pan(this.puerta.x, this.puerta.y, 5000, 'Sine.easeInOut');
-        });
-        camera1.on(Phaser.Cameras.Scene2D.Events.PAN_COMPLETE, () => {
-            camera1.pan(this.javier.x, this.javier.y, 2000, 'Sine.easeInOut');
-            camera1.zoomTo(3, 2000, 'Sine.easeOut');
-            setTimeout( () => {
-                this.cameras.main.setAlpha(1);
-                this.cameras.remove(camera1);
-            }, 1500);
-        }); 
+        //CAMARA INICIAL EFECTO FADE IN
+        this.cameras.main.fadeIn(2000);
 
         // CONTADOR VIDAD
         this.contadorVidas=3;
@@ -163,6 +142,8 @@ class SceneA extends Phaser.Scene{
         //COLISIÓN con picos
         console.log(this.contadorVidas)
         this.physics.add.collider(this.javier, picos, () => {
+            //EFECTO DE VIBRACIÓN EN CÁMARA
+            this.cameras.main.shake(500,0.008);
             this.contadorVidas -= 1;
             this.registry.events.emit('loseHeart',-1);
             this.javier.body.x=50;
