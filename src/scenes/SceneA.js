@@ -13,19 +13,27 @@ class SceneA extends Phaser.Scene{
         //CAMARA INICIAL EFECTO FADE IN
         this.cameras.main.fadeIn(2000);
         this.cameras.main.setBounds(0, 0, 1580, 780);
+        this.bandera=0
         
         this.cameras.main.on(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, () => {
         this.cameras.main.pan(100, 702, 2000);
         this.cameras.main.setZoom(5);
         });
         this.cameras.main.on(Phaser.Cameras.Scene2D.Events.PAN_COMPLETE, () => {
-            setTimeout( () => {
-                // coordenada x, coordeada y, duración, interpolación
-                this.cameras.main.pan(this.puerta.x, this.puerta.y, 2000);
-            }, 2000);
-            setTimeout( () => {
-                this.cameras.main.setZoom(1);
-            }, 5000);
+            if(this.bandera==0){
+                setTimeout( () => {
+                    // coordenada x, coordeada y, duración, interpolación
+                    this.cameras.main.pan(this.puerta.x, this.puerta.y, 2000);
+                    
+                    console.log("ENTRO COMPLETE ")
+                }, 2000);
+                setTimeout( () => {
+                    this.cameras.main.setZoom(1);
+                    this.bandera=1
+                }, 5000);
+            }
+            console.log("ENTRO COMPLETE ")
+            
         });
         //  790 y 390
 
