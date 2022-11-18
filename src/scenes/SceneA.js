@@ -24,16 +24,13 @@ class SceneA extends Phaser.Scene{
                 setTimeout( () => {
                     // coordenada x, coordeada y, duración, interpolación
                     this.cameras.main.pan(this.puerta.x, this.puerta.y, 2000);
-                    
-                    console.log("ENTRO COMPLETE ")
                 }, 2000);
                 setTimeout( () => {
                     this.cameras.main.setZoom(1);
                     this.bandera=1
                 }, 5000);
             }
-            console.log("ENTRO COMPLETE ")
-            
+            // console.log("ENTRO COMPLETE ")
         });
         //  790 y 390
 
