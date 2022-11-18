@@ -10,31 +10,31 @@ class SceneA extends Phaser.Scene{
     }
     
     create() {
+        //BANDERAS CONTROL DE PANEO
+        this.paneo = 0;
         //CAMARA INICIAL EFECTO FADE IN
-        this.cameras.main.fadeIn(2000);
+        this.cameras.main.fadeIn(1500);
         this.cameras.main.setBounds(0, 0, 1580, 780);
         this.bandera=0
         
         this.cameras.main.on(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, () => {
-        this.cameras.main.pan(100, 702, 2000);
-        this.cameras.main.setZoom(5);
+            this.cameras.main.pan(100, 702, 2000);
+            this.cameras.main.setZoom(5);
         });
+        
         this.cameras.main.on(Phaser.Cameras.Scene2D.Events.PAN_COMPLETE, () => {
-            if(this.bandera==0){
+            if(this.paneo == 0){
                 setTimeout( () => {
-                    // coordenada x, coordeada y, duración, interpolación
+                    // PANEO A LA PUERTA(GONG)
                     this.cameras.main.pan(this.puerta.x, this.puerta.y, 2000);
-                }, 2000);
+                }, 1000);
                 setTimeout( () => {
                     this.cameras.main.setZoom(1);
-                    this.bandera=1
                 }, 5000);
+                this.paneo = 1;
             }
-            // console.log("ENTRO COMPLETE ")
         });
-        //  790 y 390
-
-        // CONTADOR VIDAD
+        // CONTADOR VIDAS
         this.contadorVidas=3;
         //console.log(this.scene.manager.scenes)
         //MANEJO DE SCENE
@@ -51,6 +51,7 @@ class SceneA extends Phaser.Scene{
 
         // IMAGEN INSTRUCCIONES
         this.instrucciones = this.add.image(750,25, 'instrucciones').setDepth(4).setScale(0.28);
+        //LAS INSTRUCCIONES DESAPARECEN DESPUÉS DE 19 SEGUNDOS
         setTimeout(() => {
             this.instrucciones.setAlpha(0);
         }, 19000);
@@ -109,7 +110,7 @@ class SceneA extends Phaser.Scene{
         this.puerta = this.physics.add.image(1460, 135, 'puerta').setScale(0.7);
         this.puerta.body.setAllowGravity(false);
         this.puerta.body.setImmovable(true);  
-       
+
         // COLECCIONABLE
         this.objeto = this.physics.add.image(650,100,'coleccionable').setScale(.3);
         this.objeto.body.setAllowGravity(false);
